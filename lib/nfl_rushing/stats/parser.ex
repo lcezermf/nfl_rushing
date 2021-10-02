@@ -3,6 +3,11 @@ defmodule NflRushing.Stats.Parser do
   NflRushing.Stats.Parser is a module to parse information about a player by reading data from JSON.
   """
 
+  @doc """
+  Parse all data from a JSON file into a map with mapped values to build Stats.Player schema.
+
+  If invalid filename or filepath is give, returns error.
+  """
   @spec parse_players(binary()) :: {:ok, [map()]} | {:error, atom}
   def parse_players(filename) do
     with {:ok, body} <- File.read(filename),
