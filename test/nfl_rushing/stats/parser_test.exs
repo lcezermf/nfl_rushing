@@ -20,7 +20,7 @@ defmodule NflRushing.Stats.ParserTest do
           rushing_attempts_total: 2,
           rushing_first_downs_percentage: 0,
           rushing_first_downs_total: 0,
-          rushing_longest_touchdown: "7",
+          rushing_longest_touchdown: 7.0,
           rushing_touchdowns_total: 0,
           rushing_yards_per_attempt_average: 3.5,
           rushing_yards_per_game: 7,
@@ -37,11 +37,11 @@ defmodule NflRushing.Stats.ParserTest do
           rushing_attempts_total: 205,
           rushing_first_downs_percentage: 23.9,
           rushing_first_downs_total: 49,
-          rushing_longest_touchdown: "75T",
+          rushing_longest_touchdown: 75.0,
           rushing_touchdowns_total: 6,
           rushing_yards_per_attempt_average: 5.1,
           rushing_yards_per_game: 65.2,
-          rushing_yards_total: "1,043",
+          rushing_yards_total: 1.043,
           team: "NO"
         }
       ]

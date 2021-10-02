@@ -36,7 +36,7 @@ defmodule NflRushing.Stats.Player do
     field :rushing_yards_per_attempt_average, :float
     field :rushing_yards_per_game, :float
     field :rushing_touchdowns_total, :integer
-    field :rushing_longest_touchdown, :string
+    field :rushing_longest_touchdown, :float
     field :rushing_first_downs_total, :integer
     field :rushing_first_downs_percentage, :float
     field :rushing_20_yards_more, :integer

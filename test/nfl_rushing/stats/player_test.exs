@@ -13,7 +13,7 @@ defmodule NflRushing.Stats.PlayerTest do
     rushing_yards_per_attempt_average: 56.2,
     rushing_yards_per_game: 1.0,
     rushing_touchdowns_total: 10,
-    rushing_longest_touchdown: "10T",
+    rushing_longest_touchdown: 10.0,
     rushing_first_downs_total: 55,
     rushing_first_downs_percentage: 10.2,
     rushing_20_yards_more: 5,
