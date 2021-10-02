@@ -9,3 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+{:ok, result} = NflRushing.Stats.Parser.parse_players("priv/rushing.json")
+
+NflRushing.Repo.insert_all(NflRushing.Stats.Player, result)
