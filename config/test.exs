@@ -20,9 +20,6 @@ config :nfl_rushing, NflRushingWeb.Endpoint,
   secret_key_base: "XX4gV5jZOOAb8PNDZnsKzh1LfRWGZvXi42O7OIJp62PeIHmqvE6zyKrq2GbXHqjU",
   server: false
 
-# In test we don't send emails.
-config :nfl_rushing, NflRushing.Mailer, adapter: Swoosh.Adapters.Test
-
 # Print only warnings and errors during test
 config :logger, level: :warn
 
