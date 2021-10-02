@@ -43,5 +43,6 @@ defmodule NflRushing.Stats.Parser do
     {float_value, _} = Float.parse(replaced_value)
     float_value
   end
+
   defp to_float(value), do: value * 100 / 100
 end
