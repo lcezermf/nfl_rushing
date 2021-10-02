@@ -42,8 +42,6 @@ defmodule NflRushing.Stats.Player do
     field :rushing_20_yards_more, :integer
     field :rushing_40_yards_more, :integer
     field :fumbles, :integer
-
-    timestamps()
   end
 
   @spec changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
