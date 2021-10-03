@@ -3,7 +3,7 @@ defmodule NflRushingWeb.PageControllerTest do
 
   alias NflRushing.Factory
 
-  def player_factory, do: Factory.insert!(:player)
+  def player_factory(attrs \\ %{}), do: Factory.insert!(:player, attrs)
 
   test "GET / with no data returns not found message", %{conn: conn} do
     conn = get(conn, "/")

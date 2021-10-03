@@ -35,7 +35,7 @@ defmodule NflRushing.Factory do
     |> struct!(attributes)
   end
 
-  def insert!(factory_name, attributes \\ []) do
+  def insert!(factory_name, attributes) do
     factory_name
     |> build(attributes)
     |> Repo.insert!()
