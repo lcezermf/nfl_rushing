@@ -1,41 +1,56 @@
 <section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace of mind from prototype to production</p>
+  <h1>Welcome to NFL Rushing!</h1>
 </section>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.6/CHANGELOG.md">v1.6 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://web.libera.chat/#elixir">#elixir on Libera Chat (IRC)</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-      <li>
-        <a href="https://discord.gg/elixir">Elixir on Discord</a>
-      </li>
-    </ul>
-  </article>
-</section>
+<%= if @players == [] do %>
+  <section class="phx-hero">
+    <p class="alert alert-info">Player not found</p>
+  </section>
+<% else %>
+  <h2>Listing players</h2>
+  
+  <table class="centered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Player</th>
+        <th>Team</th>
+        <th>Pos</th>
+        <th>Att/G</th>
+        <th>Att</th>
+        <th>Yds</th>
+        <th>Avg</th>
+        <th>Yds/G</th>
+        <th>TD</th>
+        <th>Lng</th>
+        <th>1st</th>
+        <th>1st%</th>
+        <th>20+</th>
+        <th>40+</th>
+        <th>FUM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for player <- @players do %>
+        <tr>
+          <td><%= player.id %></td>
+          <td><%= player.name %></td>
+          <td><%= player.team %></td>
+          <td><%= player.position %></td>
+          <td><%= player.rushing_attempts_per_game_average %></td>
+          <td><%= player.rushing_attempts_total %></td>
+          <td><%= player.rushing_yards_total %></td>
+          <td><%= player.rushing_yards_per_attempt_average %></td>
+          <td><%= player.rushing_yards_per_game %></td>
+          <td><%= player.rushing_touchdowns_total %></td>
+          <td><%= player.rushing_longest_touchdown %></td>
+          <td><%= player.rushing_first_downs_total %></td>
+          <td><%= player.rushing_first_downs_percentage %></td>
+          <td><%= player.rushing_20_yards_more %></td>
+          <td><%= player.rushing_40_yards_more %></td>
+          <td><%= player.fumbles %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
