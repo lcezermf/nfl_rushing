@@ -53,6 +53,30 @@ defmodule NflRushing.StatsTest do
       assert player_three.id in ids
     end
 
+    test "order data by total rushing yards asc" do
+      player_one = player_factory(%{rushing_yards_total: 10.0})
+      player_two = player_factory(%{rushing_yards_total: 2.1})
+      player_three = player_factory(%{rushing_yards_total: 5.2})
+
+      records = Stats.list(%{"order_field" => "rushing_yards_total", "order_direction" => "asc"})
+
+      assert player_two.id == Enum.at(records, 0).id
+      assert player_three.id == Enum.at(records, 1).id
+      assert player_one.id == Enum.at(records, 2).id
+    end
+
+    test "order data by total rushing yards desc" do
+      player_one = player_factory(%{rushing_yards_total: 10.0})
+      player_two = player_factory(%{rushing_yards_total: 2.1})
+      player_three = player_factory(%{rushing_yards_total: 5.2})
+
+      records = Stats.list(%{"order_field" => "rushing_yards_total", "order_direction" => "desc"})
+
+      assert player_one.id == Enum.at(records, 0).id
+      assert player_three.id == Enum.at(records, 1).id
+      assert player_two.id == Enum.at(records, 2).id
+    end
+
     test "with name param that does not match as filter must return empty list" do
       player_factory(%{name: "Testing filter"})
       player_factory()

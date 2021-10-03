@@ -17,11 +17,14 @@ defmodule NflRushing.Stats do
   Allowed keys in the map params:
 
   * name_filter: a string that represents the name used to filter the data
+  * order_field: the field used to apply the order
+  * order_direction: if the order is by :asc or :desc
   """
   @spec list(map()) :: [Player] | []
   def list(params \\ %{}) do
     Player
     |> filter_by_name(params)
+    |> apply_order(params)
     |> Repo.all()
   end
 
@@ -31,4 +34,14 @@ defmodule NflRushing.Stats do
   end
 
   defp filter_by_name(query, %{}), do: query
+
+  defp apply_order(query, %{"order_field" => order_field, "order_direction" => order_direction}) do
+    query
+    |> order_by(
+      [player],
+      {^String.to_atom(order_direction), field(player, ^String.to_atom(order_field))}
+    )
+  end
+
+  defp apply_order(query, %{}), do: query
 end
