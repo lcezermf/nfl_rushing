@@ -13,7 +13,8 @@
     <%= hidden_input f, :order_field, value: @conn.params["order_field"] || "" %>
     <%= hidden_input f, :order_direction, value: @conn.params["order_direction"] || "" %>
     <%= search_input f, :name_filter %>
-    <%= submit "Search" %>
+    <%= submit "Apply Filter" %>
+    <%= link "Clear filters", to: Routes.page_path(@conn, :index), class: "button" %>
   <% end %>
 
   <table class="centered">
