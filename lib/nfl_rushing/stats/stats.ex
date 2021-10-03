@@ -35,7 +35,8 @@ defmodule NflRushing.Stats do
 
   defp filter_by_name(query, %{}), do: query
 
-  defp apply_order(query, %{"order_field" => order_field, "order_direction" => order_direction}) do
+  defp apply_order(query, %{"order_field" => order_field, "order_direction" => order_direction})
+       when order_field != "" and order_direction != "" do
     query
     |> order_by(
       [player],
