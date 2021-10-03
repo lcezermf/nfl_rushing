@@ -4,11 +4,11 @@ defmodule NflRushing.StatsTest do
   alias NflRushing.Stats
 
   describe "list/1" do
-    test "when no data is loaded return empty list" do
+    test "with not data returns empty list" do
       assert [] == Stats.list()
     end
 
-    test "when data is loaded return list with data" do
+    test "with data is returns list with data" do
       {:ok, result} = NflRushing.Stats.Parser.parse_players("test/support/fixtures/rushing.json")
 
       NflRushing.Repo.insert_all(NflRushing.Stats.Player, result)
