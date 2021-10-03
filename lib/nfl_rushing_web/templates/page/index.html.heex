@@ -8,6 +8,11 @@
   </section>
 <% else %>
   <h2>Listing players</h2>
+
+  <%= form_for @conn, Routes.page_path(@conn, :index), [method: :get, class: "pull-right"], fn f -> %>
+    <%= search_input f, :name_filter %>
+    <%= submit "Search" %>
+  <% end %>
   
   <table class="centered">
     <thead>
