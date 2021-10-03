@@ -26,7 +26,7 @@ defmodule NflRushing.Factory do
   end
 
   defp generate_random_float do
-    ((Range.new(1, 100) |> Enum.random()) * 1.0) * 0.95 |> Float.round(2)
+    ((Range.new(1, 100) |> Enum.random()) * 1.0 * 0.95) |> Float.round(2)
   end
 
   def build(factory_name, attributes) do
