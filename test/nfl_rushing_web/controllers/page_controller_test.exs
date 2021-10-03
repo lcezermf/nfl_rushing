@@ -20,4 +20,18 @@ defmodule NflRushingWeb.PageControllerTest do
     assert html_response(conn, 200) =~ "Listing players"
     assert html_response(conn, 200) =~ "Welcome to NFL Rushing!"
   end
+
+  test "GET / with name as filter data returns listing players message and filtered player", %{
+    conn: conn
+  } do
+    player_factory(%{name: "Must filter this one"})
+    player_factory(%{name: "Must not filter this one"})
+
+    conn = get(conn, "/", %{"name_filter" => "Must filter"})
+
+    refute html_response(conn, 200) =~ "Must not"
+    assert html_response(conn, 200) =~ "Must filter"
+    assert html_response(conn, 200) =~ "Listing players"
+    assert html_response(conn, 200) =~ "Welcome to NFL Rushing!"
+  end
 end
