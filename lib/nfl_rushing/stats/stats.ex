@@ -9,17 +9,26 @@ defmodule NflRushing.Stats do
   alias NflRushing.Repo
   alias NflRushing.Stats.Player
 
-  @spec list(name_filter :: String.t()) :: [Player] | []
-  def list(name_filter \\ "") do
+  @doc """
+  Retuns a list of players on the DB.
+
+  If no params is set return all result on the DB.
+
+  Allowed keys in the map params:
+
+  * name_filter: a string that represents the name used to filter the data
+  """
+  @spec list(map()) :: [Player] | []
+  def list(params \\ %{}) do
     Player
-    |> filter_by_name(name_filter)
+    |> filter_by_name(params)
     |> Repo.all()
   end
 
-  defp filter_by_name(query, ""), do: query
-
-  defp filter_by_name(query, name_filter) do
+  defp filter_by_name(query, %{"name_filter" => name_filter}) do
     query
     |> where([player], like(player.name, ^"%#{name_filter}%"))
   end
+
+  defp filter_by_name(query, %{}), do: query
 end

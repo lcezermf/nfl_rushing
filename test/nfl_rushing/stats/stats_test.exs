@@ -23,7 +23,7 @@ defmodule NflRushing.StatsTest do
       player_one = player_factory(%{name: "Testing filter"})
       player_two = player_factory()
 
-      records = Stats.list(player_one.name)
+      records = Stats.list(%{"name_filter" => player_one.name})
       ids = Enum.map(records, fn record -> record.id end)
 
       assert Enum.count(records) == 1
@@ -36,7 +36,7 @@ defmodule NflRushing.StatsTest do
       player_two = player_factory()
       player_three = player_factory(%{name: "Random filter"})
 
-      records = Stats.list("Testing")
+      records = Stats.list(%{"name_filter" => "Testing"})
       ids = Enum.map(records, fn record -> record.id end)
 
       assert Enum.count(records) == 1
@@ -44,7 +44,7 @@ defmodule NflRushing.StatsTest do
       refute player_two.id in ids
       refute player_three.id in ids
 
-      records = Stats.list("filter")
+      records = Stats.list(%{"name_filter" => "filter"})
       ids = Enum.map(records, fn record -> record.id end)
 
       assert Enum.count(records) == 2
@@ -57,7 +57,7 @@ defmodule NflRushing.StatsTest do
       player_factory(%{name: "Testing filter"})
       player_factory()
 
-      records = Stats.list("Not valid name")
+      records = Stats.list(%{"name_filter" => "Not valid name"})
 
       assert [] == records
     end
