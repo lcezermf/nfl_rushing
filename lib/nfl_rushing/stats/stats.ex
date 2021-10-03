@@ -30,7 +30,7 @@ defmodule NflRushing.Stats do
 
   defp filter_by_name(query, %{"name_filter" => name_filter}) do
     query
-    |> where([player], like(player.name, ^"%#{name_filter}%"))
+    |> where([player], ilike(player.name, ^"%#{name_filter}%"))
   end
 
   defp filter_by_name(query, %{}), do: query
