@@ -28,7 +28,8 @@ defmodule NflRushing.Stats.Parser do
       rushing_yards_per_attempt_average: to_float(player["Avg"]),
       rushing_yards_per_game: to_float(player["Yds/G"]),
       rushing_touchdowns_total: player["TD"],
-      rushing_longest_touchdown: to_float(player["Lng"]),
+      rushing_longest_touchdown: to_integer(player["Lng"]),
+      rushing_longest_touchdown_raw: "#{player["Lng"]}",
       rushing_first_downs_total: player["1st"],
       rushing_first_downs_percentage: to_float(player["1st%"]),
       rushing_20_yards_more: player["20+"],
@@ -37,12 +38,23 @@ defmodule NflRushing.Stats.Parser do
     }
   end
 
-  @spec to_float(number() | binary()) :: float()
+  @spec to_float(binary()) :: float()
   defp to_float(value) when is_binary(value) do
     replaced_value = String.replace(value, ",", ".")
     {float_value, _} = Float.parse(replaced_value)
     float_value
   end
 
+  @spec to_float(number()) :: float()
   defp to_float(value), do: value * 100 / 100
+
+  @spec to_integer(String.t()) :: integer()
+  defp to_integer(value) when is_binary(value) do
+    value
+    |> String.replace("T", "")
+    |> String.to_integer()
+  end
+
+  @spec to_integer(integer()) :: integer()
+  defp to_integer(value) when is_integer(value), do: value
 end

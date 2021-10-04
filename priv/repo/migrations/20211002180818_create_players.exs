@@ -12,7 +12,8 @@ defmodule NflRushing.Repo.Migrations.CreatePlayers do
       add :rushing_yards_per_attempt_average, :float
       add :rushing_yards_per_game, :float
       add :rushing_touchdowns_total, :integer
-      add :rushing_longest_touchdown, :float
+      add :rushing_longest_touchdown, :integer
+      add :rushing_longest_touchdown_raw, :string
       add :rushing_first_downs_total, :integer
       add :rushing_first_downs_percentage, :float
       add :rushing_20_yards_more, :integer
@@ -20,9 +21,9 @@ defmodule NflRushing.Repo.Migrations.CreatePlayers do
       add :fumbles, :integer
     end
 
+    create index(:players, :name)
     create index(:players, :rushing_yards_total)
     create index(:players, :rushing_longest_touchdown)
     create index(:players, :rushing_touchdowns_total)
-    create index(:players, :name)
   end
 end
