@@ -4,7 +4,7 @@ defmodule NflRushing.Stats.Parser do
   """
 
   @doc """
-  Parse all data from a JSON file into a map with mapped values to build Stats.Player schema.
+  Returns parsed data from a JSON file into a map with mapped values to build Stats.Player schema.
 
   If invalid filename or filepath is give, returns error.
   """

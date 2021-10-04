@@ -5,6 +5,12 @@ defmodule NflRushing.Stats.CSVBuilder do
 
   alias NflRushing.Stats.Player
 
+  @doc """
+  Returns a prepared raw data to be exported as CSV by a controller action.
+
+  Build the data by concat the header with player columns with data from a list of players.
+  """
+  @spec build([NflRushing.Stats.Player]) :: binary
   def build(players) do
     headers =
       [
