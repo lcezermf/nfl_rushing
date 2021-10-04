@@ -18,6 +18,7 @@ defmodule NflRushingWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/export_data", PageController, :export_data
   end
 
   # Other scopes may use custom stacks.

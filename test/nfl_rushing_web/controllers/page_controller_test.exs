@@ -53,4 +53,10 @@ defmodule NflRushingWeb.PageControllerTest do
     assert html_response(conn, 200) =~ "Listing players"
     assert html_response(conn, 200) =~ "Welcome to NFL Rushing!"
   end
+
+  test "GET /export_data must retuns 200", %{conn: conn} do
+    conn = get(conn, Routes.page_path(conn, :export_data), %{})
+
+    assert response(conn, 200)
+  end
 end
