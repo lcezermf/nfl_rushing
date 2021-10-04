@@ -28,13 +28,16 @@ defmodule NflRushing.Stats do
     |> Repo.all()
   end
 
+  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
   defp filter_by_name(query, %{"name_filter" => name_filter}) do
     query
     |> where([player], ilike(player.name, ^"%#{name_filter}%"))
   end
 
+  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
   defp filter_by_name(query, %{}), do: query
 
+  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
   defp apply_order(query, %{"order_field" => order_field, "order_direction" => order_direction})
        when order_field != "" and order_direction != "" do
     query
@@ -44,5 +47,6 @@ defmodule NflRushing.Stats do
     )
   end
 
+  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
   defp apply_order(query, %{}), do: query
 end
