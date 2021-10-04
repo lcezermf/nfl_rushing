@@ -29,8 +29,8 @@
         <th><%= link("Yds", to: Routes.page_path(@conn, :index, Map.merge(@conn.params, %{"order_field" => "rushing_yards_total", "order_direction" => get_order_direction(@conn.params["order_direction"] || "")}))) %></th>
         <th>Avg</th>
         <th>Yds/G</th>
-        <th>TD</th>
-        <th>Lng</th>
+        <th><%= link("TD", to: Routes.page_path(@conn, :index, Map.merge(@conn.params, %{"order_field" => "rushing_yards_total", "order_direction" => get_order_direction(@conn.params["order_direction"] || "")}))) %></th>
+        <th><%= link("Lng", to: Routes.page_path(@conn, :index, Map.merge(@conn.params, %{"order_field" => "rushing_longest_touchdown", "order_direction" => get_order_direction(@conn.params["order_direction"] || "")}))) %></th>
         <th>1st</th>
         <th>1st%</th>
         <th>20+</th>
