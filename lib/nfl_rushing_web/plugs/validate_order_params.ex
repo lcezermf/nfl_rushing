@@ -1,4 +1,8 @@
 defmodule NflRushingWeb.Plugs.ValidateOrderParams do
+  @moduledoc """
+  NflRushingWeb.Plugs.ValidateOrderParams is a plug to validate params for order_field and order_direction
+  """
+
   use Phoenix.Controller
   import Plug.Conn
 
