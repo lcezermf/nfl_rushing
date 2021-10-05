@@ -4,7 +4,7 @@
 
 <%= if @players == [] do %>
   <section class="phx-hero">
-    <p class="alert alert-info">Player not found</p>
+    <p class="alert alert-info">Player not found, <%= link "go back.", to: Routes.page_path(@conn, :index) %></p>
   </section>
 <% else %>
   <h2>Listing players</h2>
