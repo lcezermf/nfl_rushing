@@ -58,8 +58,6 @@ defmodule NflRushing.Stats.Player do
   """
   @spec to_csv(map()) :: String.t()
   def to_csv(fields) when fields == %{}, do: ""
-
-  @spec to_csv(map()) :: String.t()
   def to_csv(fields) do
     "#{fields.id},#{fields.name},#{fields.team},#{fields.position},#{fields.rushing_attempts_per_game_average},#{fields.rushing_attempts_total},#{fields.rushing_yards_total},#{fields.rushing_yards_per_attempt_average},#{fields.rushing_yards_per_game},#{fields.rushing_touchdowns_total},#{fields.rushing_longest_touchdown},#{fields.rushing_longest_touchdown_raw},#{fields.rushing_first_downs_total},#{fields.rushing_first_downs_percentage},#{fields.rushing_20_yards_more},#{fields.rushing_40_yards_more},#{fields.fumbles}\n"
   end
