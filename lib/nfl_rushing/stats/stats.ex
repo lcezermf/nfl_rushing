@@ -4,15 +4,22 @@ defmodule NflRushing.Stats do
   filter and search.
   """
 
+  @type empty_map :: %{}
+  @type name_filter_map :: %{required(:name_filter) => String.t()}
+  @type order_filter_map :: %{
+          required(:order_field) => String.t(),
+          required(:order_direction) => String.t()
+        }
+
   import Ecto.Query, warn: false
 
   alias NflRushing.Repo
   alias NflRushing.Stats.Player
 
   @doc """
-  Retuns a list of players on the DB.
+  Retuns a list of players.
 
-  If no params is set return all result on the DB.
+  If no params is set return all results.
 
   Allowed keys in the map params:
 
@@ -28,16 +35,16 @@ defmodule NflRushing.Stats do
     |> Repo.all()
   end
 
-  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
+  @spec filter_by_name(Ecto.Queryable.t(), name_filter_map()) :: Ecto.Queryable.t()
   defp filter_by_name(query, %{"name_filter" => name_filter}) do
     query
     |> where([player], ilike(player.name, ^"%#{name_filter}%"))
   end
 
-  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
+  @spec filter_by_name(Ecto.Queryable.t(), empty_map()) :: Ecto.Queryable.t()
   defp filter_by_name(query, %{}), do: query
 
-  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
+  @spec apply_order(Ecto.Queryable.t(), order_filter_map()) :: Ecto.Queryable.t()
   defp apply_order(query, %{"order_field" => order_field, "order_direction" => order_direction})
        when order_field != "" and order_direction != "" do
     query
@@ -47,6 +54,6 @@ defmodule NflRushing.Stats do
     )
   end
 
-  @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
+  @spec apply_order(Ecto.Queryable.t(), empty_map()) :: Ecto.Queryable.t()
   defp apply_order(query, %{}), do: query
 end

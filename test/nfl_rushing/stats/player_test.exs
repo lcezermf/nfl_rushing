@@ -41,10 +41,14 @@ defmodule NflRushing.Stats.PlayerTest do
     end
   end
 
-  describe "to_csv" do
-    test "return data in a format to be used in the csv" do
+  describe "to_csv/1" do
+    test "with valid data must return all fields as a string separated with comma" do
       assert Player.to_csv(Map.merge(@valid_fields, %{id: 1})) ==
                "1,#{@valid_fields.name},#{@valid_fields.team},#{@valid_fields.position},#{@valid_fields.rushing_attempts_per_game_average},#{@valid_fields.rushing_attempts_total},#{@valid_fields.rushing_yards_total},#{@valid_fields.rushing_yards_per_attempt_average},#{@valid_fields.rushing_yards_per_game},#{@valid_fields.rushing_touchdowns_total},#{@valid_fields.rushing_longest_touchdown},#{@valid_fields.rushing_longest_touchdown_raw},#{@valid_fields.rushing_first_downs_total},#{@valid_fields.rushing_first_downs_percentage},#{@valid_fields.rushing_20_yards_more},#{@valid_fields.rushing_40_yards_more},#{@valid_fields.fumbles}\n"
+    end
+
+    test "with empty map returns and empty string" do
+      assert Player.to_csv(%{}) == ""
     end
   end
 end

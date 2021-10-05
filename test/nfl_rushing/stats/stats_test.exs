@@ -53,7 +53,7 @@ defmodule NflRushing.StatsTest do
       assert player_three.id in ids
     end
 
-    test "order data by total rushing yards asc" do
+    test "order data by rushing_yards_total asc" do
       player_one = player_factory(%{rushing_yards_total: 10.0})
       player_two = player_factory(%{rushing_yards_total: 2.1})
       player_three = player_factory(%{rushing_yards_total: 5.2})
@@ -65,12 +65,60 @@ defmodule NflRushing.StatsTest do
       assert player_one.id == Enum.at(records, 2).id
     end
 
-    test "order data by total rushing yards desc" do
+    test "order data by rushing_yards_total desc" do
       player_one = player_factory(%{rushing_yards_total: 10.0})
       player_two = player_factory(%{rushing_yards_total: 2.1})
       player_three = player_factory(%{rushing_yards_total: 5.2})
 
       records = Stats.list(%{"order_field" => "rushing_yards_total", "order_direction" => "desc"})
+
+      assert player_one.id == Enum.at(records, 0).id
+      assert player_three.id == Enum.at(records, 1).id
+      assert player_two.id == Enum.at(records, 2).id
+    end
+
+    test "order data by rushing_touchdowns_total asc" do
+      player_one = player_factory(%{rushing_touchdowns_total: 10})
+      player_two = player_factory(%{rushing_touchdowns_total: 2})
+      player_three = player_factory(%{rushing_touchdowns_total: 5})
+
+      records = Stats.list(%{"order_field" => "rushing_touchdowns_total", "order_direction" => "asc"})
+
+      assert player_two.id == Enum.at(records, 0).id
+      assert player_three.id == Enum.at(records, 1).id
+      assert player_one.id == Enum.at(records, 2).id
+    end
+
+    test "order data by rushing_touchdowns_total desc" do
+      player_one = player_factory(%{rushing_touchdowns_total: 10})
+      player_two = player_factory(%{rushing_touchdowns_total: 2})
+      player_three = player_factory(%{rushing_touchdowns_total: 5})
+
+      records = Stats.list(%{"order_field" => "rushing_touchdowns_total", "order_direction" => "desc"})
+
+      assert player_one.id == Enum.at(records, 0).id
+      assert player_three.id == Enum.at(records, 1).id
+      assert player_two.id == Enum.at(records, 2).id
+    end
+
+    test "order data by rushing_longest_touchdown asc" do
+      player_one = player_factory(%{rushing_longest_touchdown: 10})
+      player_two = player_factory(%{rushing_longest_touchdown: 2})
+      player_three = player_factory(%{rushing_longest_touchdown: 5})
+
+      records = Stats.list(%{"order_field" => "rushing_longest_touchdown", "order_direction" => "asc"})
+
+      assert player_two.id == Enum.at(records, 0).id
+      assert player_three.id == Enum.at(records, 1).id
+      assert player_one.id == Enum.at(records, 2).id
+    end
+
+    test "order data by rushing_longest_touchdown desc" do
+      player_one = player_factory(%{rushing_longest_touchdown: 10})
+      player_two = player_factory(%{rushing_longest_touchdown: 2})
+      player_three = player_factory(%{rushing_longest_touchdown: 5})
+
+      records = Stats.list(%{"order_field" => "rushing_longest_touchdown", "order_direction" => "desc"})
 
       assert player_one.id == Enum.at(records, 0).id
       assert player_three.id == Enum.at(records, 1).id

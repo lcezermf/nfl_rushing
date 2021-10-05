@@ -8,7 +8,7 @@ defmodule NflRushing.Stats.ParserTest do
       assert {:error, :enoent} == Parser.parse_players("invalid_file_path.json")
     end
 
-    test "must map columns from JSON and map to Player schema" do
+    test "with valid file path must map columns from JSON and to Player schema" do
       expected_players = [
         %{
           fumbles: 0,

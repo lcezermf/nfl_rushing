@@ -1,16 +1,14 @@
 defmodule NflRushing.Stats.CSVBuilder do
   @moduledoc """
-  NflRushing.Stats.CSVBuilder is a module responsible to build the CSV with data to be exported.
+  NflRushing.Stats.CSVBuilder is a module responsible to build the data that will be used on the CSV file exported.
   """
 
   alias NflRushing.Stats.Player
 
   @doc """
   Returns a prepared raw data to be exported as CSV by a controller action.
-
-  Build the data by concat the header with player columns with data from a list of players.
   """
-  @spec build([NflRushing.Stats.Player]) :: binary
+  @spec build([Player]) :: binary()
   def build(players) do
     headers =
       [

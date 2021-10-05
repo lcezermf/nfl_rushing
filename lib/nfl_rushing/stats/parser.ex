@@ -1,6 +1,6 @@
 defmodule NflRushing.Stats.Parser do
   @moduledoc """
-  NflRushing.Stats.Parser is a module to parse information about a player by reading data from JSON.
+  NflRushing.Stats.Parser is a module responsible to parse information about a player by reading data from JSON.
   """
 
   @doc """
@@ -40,8 +40,10 @@ defmodule NflRushing.Stats.Parser do
 
   @spec to_float(binary()) :: float()
   defp to_float(value) when is_binary(value) do
-    replaced_value = String.replace(value, ",", ".")
-    {float_value, _} = Float.parse(replaced_value)
+    {float_value, _} =
+      String.replace(value, ",", ".")
+      |> Float.parse()
+
     float_value
   end
 
