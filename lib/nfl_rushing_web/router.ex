@@ -8,10 +8,7 @@ defmodule NflRushingWeb.Router do
     plug :put_root_layout, {NflRushingWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-  end
-
-  pipeline :api do
-    plug :accepts, ["json"]
+    plug NflRushingWeb.Plugs.ValidateOrderParams
   end
 
   scope "/", NflRushingWeb do
