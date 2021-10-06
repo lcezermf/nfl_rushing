@@ -33,6 +33,7 @@ defmodule NflRushing.Stats do
     query
     |> where([player], ilike(player.name, ^"%#{name_filter}%"))
   end
+
   defp filter_by_name(query, %{}), do: query
 
   @spec apply_order(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
@@ -44,5 +45,6 @@ defmodule NflRushing.Stats do
       {^String.to_atom(order_direction), field(player, ^String.to_atom(order_field))}
     )
   end
+
   defp apply_order(query, %{}), do: query
 end

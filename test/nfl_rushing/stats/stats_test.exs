@@ -82,7 +82,8 @@ defmodule NflRushing.StatsTest do
       player_two = player_factory(%{rushing_touchdowns_total: 2})
       player_three = player_factory(%{rushing_touchdowns_total: 5})
 
-      records = Stats.list(%{"order_field" => "rushing_touchdowns_total", "order_direction" => "asc"})
+      records =
+        Stats.list(%{"order_field" => "rushing_touchdowns_total", "order_direction" => "asc"})
 
       assert player_two.id == Enum.at(records, 0).id
       assert player_three.id == Enum.at(records, 1).id
@@ -94,7 +95,8 @@ defmodule NflRushing.StatsTest do
       player_two = player_factory(%{rushing_touchdowns_total: 2})
       player_three = player_factory(%{rushing_touchdowns_total: 5})
 
-      records = Stats.list(%{"order_field" => "rushing_touchdowns_total", "order_direction" => "desc"})
+      records =
+        Stats.list(%{"order_field" => "rushing_touchdowns_total", "order_direction" => "desc"})
 
       assert player_one.id == Enum.at(records, 0).id
       assert player_three.id == Enum.at(records, 1).id
@@ -106,7 +108,8 @@ defmodule NflRushing.StatsTest do
       player_two = player_factory(%{rushing_longest_touchdown: 2})
       player_three = player_factory(%{rushing_longest_touchdown: 5})
 
-      records = Stats.list(%{"order_field" => "rushing_longest_touchdown", "order_direction" => "asc"})
+      records =
+        Stats.list(%{"order_field" => "rushing_longest_touchdown", "order_direction" => "asc"})
 
       assert player_two.id == Enum.at(records, 0).id
       assert player_three.id == Enum.at(records, 1).id
@@ -118,7 +121,8 @@ defmodule NflRushing.StatsTest do
       player_two = player_factory(%{rushing_longest_touchdown: 2})
       player_three = player_factory(%{rushing_longest_touchdown: 5})
 
-      records = Stats.list(%{"order_field" => "rushing_longest_touchdown", "order_direction" => "desc"})
+      records =
+        Stats.list(%{"order_field" => "rushing_longest_touchdown", "order_direction" => "desc"})
 
       assert player_one.id == Enum.at(records, 0).id
       assert player_three.id == Enum.at(records, 1).id
