@@ -87,13 +87,14 @@ defmodule NflRushingWeb.PageControllerTest do
   end
 
   test "GET /export_data must retuns 200", %{conn: conn} do
-    conn = get(conn, Routes.page_path(conn, :export_data), %{
-      "name_filter" => "Must filter",
-      "order_field" => "rushing_yards_total",
-      "order_direction" => "asc",
-      "page" => "1",
-      "page_size" => "15"
-    })
+    conn =
+      get(conn, Routes.page_path(conn, :export_data), %{
+        "name_filter" => "Must filter",
+        "order_field" => "rushing_yards_total",
+        "order_direction" => "asc",
+        "page" => "1",
+        "page_size" => "15"
+      })
 
     assert response(conn, 200)
   end

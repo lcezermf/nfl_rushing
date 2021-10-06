@@ -20,15 +20,18 @@ defmodule NflRushing.Stats do
   * order_field: the field used to apply the order
   * order_direction: if the order is by :asc or :desc
   """
-  @spec list(map()) :: %Scrivener.Page{
-          :entries => [any()],
-          :page_number => pos_integer(),
-          :page_size => integer(),
-          :total_entries => integer(),
-          :total_pages => pos_integer()
-        } | [Player]
+  @spec list(map()) ::
+          %Scrivener.Page{
+            :entries => [any()],
+            :page_number => pos_integer(),
+            :page_size => integer(),
+            :total_entries => integer(),
+            :total_pages => pos_integer()
+          }
+          | [Player]
   def list(params \\ %{}) do
-    result = Player
+    result =
+      Player
       |> filter_by_name(params)
       |> apply_order(params)
 
