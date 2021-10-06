@@ -26,22 +26,17 @@ defmodule NflRushing.Stats do
           :page_size => integer(),
           :total_entries => integer(),
           :total_pages => pos_integer()
-        }
+        } | [Player]
   def list(params \\ %{}) do
-    base_query(params)
-    |> Repo.paginate(params)
-  end
+    result = Player
+      |> filter_by_name(params)
+      |> apply_order(params)
 
-  @spec list(map()) :: [Player]
-  def export_data(params \\ %{}) do
-    base_query(params)
-    |> Repo.all()
-  end
-
-  defp base_query(params) do
-    Player
-    |> filter_by_name(params)
-    |> apply_order(params)
+    if Map.has_key?(params, "all_data") do
+      Repo.all(result)
+    else
+      Repo.paginate(result, params)
+    end
   end
 
   @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()
