@@ -62,4 +62,9 @@
       <% end %>
     </tbody>
   </table>
+
+  <hr />
+
+  <%= link "Prev Page", to: Routes.page_path(@conn, :index, Map.merge(@conn.params, %{page: @page.page_number - 1})), class: "button" %>
+  <%= link "Next Page", to: Routes.page_path(@conn, :index, Map.merge(@conn.params, %{page: @page.page_number + 1})), class: "button" %>
 <% end %>

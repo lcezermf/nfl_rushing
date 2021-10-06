@@ -11,7 +11,8 @@ defmodule NflRushingWeb.PageController do
     render(conn, "index.html",
       players: paginator.entries,
       page_number: paginator.page_number,
-      page_size: paginator.page_size
+      page_size: paginator.page_size,
+      page: paginator
     )
   end
 
