@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :nfl_rushing, NflRushing.Repo,
-  username: System.get_env("POSTGRES_USER"),
-  password: System.get_env("POSTGRES_PASSWORD"),
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "postgres",
   database: "nfl_rushing_dev",
-  hostname: System.get_env("POSTGRES_HOST"),
+  hostname: System.get_env("POSTGRES_HOST") || "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

@@ -1,58 +1,82 @@
-# theScore "the Rush" Interview Challenge
-At theScore, we are always looking for intelligent, resourceful, full-stack developers to join our growing team. To help us evaluate new talent, we have created this take-home interview question. This question should take you no more than a few hours.
+### App
 
-**All candidates must complete this before the possibility of an in-person interview. During the in-person interview, your submitted project will be used as the base for further extensions.**
+NflRushing is an app that show data about NFL players and stats. The app contain the following bahaviors:
 
-### Why a take-home challenge?
-In-person coding interviews can be stressful and can hide some people's full potential. A take-home gives you a chance work in a less stressful environment and showcase your talent.
+- Filter by name
+- Sort ASC/DESC by YDS, TD, LNG
+- Download filtered/sorted data to a CSV
+- Download the whole data to a CSV
+- Paginated results with a default of 25 records per page
 
-We want you to be at your best and most comfortable.
+App is deployed and running on Gigalixir https://nflrushing.gigalixirapp.com/
 
-### A bit about our tech stack
-As outlined in our job description, you will come across technologies which include a server-side web framework (like Elixir/Phoenix, Ruby on Rails or a modern Javascript framework) and a front-end Javascript framework (like ReactJS)
+### Stack
 
-### Challenge Background
-We have sets of records representing football players' rushing statistics. All records have the following attributes:
-* `Player` (Player's name)
-* `Team` (Player's team abbreviation)
-* `Pos` (Player's postion)
-* `Att/G` (Rushing Attempts Per Game Average)
-* `Att` (Rushing Attempts)
-* `Yds` (Total Rushing Yards)
-* `Avg` (Rushing Average Yards Per Attempt)
-* `Yds/G` (Rushing Yards Per Game)
-* `TD` (Total Rushing Touchdowns)
-* `Lng` (Longest Rush -- a `T` represents a touchdown occurred)
-* `1st` (Rushing First Downs)
-* `1st%` (Rushing First Down Percentage)
-* `20+` (Rushing 20+ Yards Each)
-* `40+` (Rushing 40+ Yards Each)
-* `FUM` (Rushing Fumbles)
+The solution was built using:
 
-In this repo is a sample data file [`rushing.json`](/rushing.json).
+- Elixir 1.12
+- Phoenix 1.6
+- PostgreSQL 12
 
-##### Challenge Requirements
-1. Create a web app. This must be able to do the following steps
-    1. Create a webpage which displays a table with the contents of [`rushing.json`](/rushing.json)
-    2. The user should be able to sort the players by _Total Rushing Yards_, _Longest Rush_ and _Total Rushing Touchdowns_
-    3. The user should be able to filter by the player's name
-    4. The user should be able to download the sorted data as a CSV, as well as a filtered subset
-    
-2. The system should be able to potentially support larger sets of data on the order of 10k records.
+### Installation & Setup
 
-3. Update the section `Installation and running this solution` in the README file explaining how to run your code
+It requires you to have the same stack installed.
 
-### Submitting a solution
-1. Download this repo
-2. Complete the problem outlined in the `Requirements` section
-3. In your personal public GitHub repo, create a new public repo with this implementation
-4. Provide this link to your contact at theScore
+If you are using `bash` you need ro run:
 
-We will evaluate you on your ability to solve the problem defined in the requirements section as well as your choice of frameworks, and general coding style.
+```bash
+source .bash_env
+```
 
-### Help
-If you have any questions regarding requirements, do not hesitate to email your contact at theScore for clarification.
+If you are using `fish` as me, you need to run:
 
-### Installation and running this solution
+```bash
+source .fish_env
+```
 
-... TODO
+Both commands will set the env variables for POSTGRES_USER, POSTGRES_PASSWORD and POSTGRES_HOST to later
+be used on test and dev env.
+
+Once env variables are set is possible to setup the DB for both envs
+
+```bash
+mix ecto.create; mix ecto.migrate
+```
+
+```bash
+MIX_ENV=test mix ecto.create; mix ecto.migrate
+```
+
+### Running the app
+
+First needs to load the data from `rushing.json` file:
+
+```bash
+mix run priv/repo/seeds.exs
+```
+
+The data will be loaded in batchs of 50, is possible to change this value by editing `priv/repo/seeds.exs` file.
+
+Once the data is loaded the app can run by:
+
+```bash
+iex -S mix phx.server
+```
+
+It will run the app and also open the iex console. If you do not wanna the iex console just run `mix phx.server`
+
+### Running test
+
+Tests were developed using the default ExUnit framework and can be used by running:
+
+```
+mix test
+```
+
+### Formating and code styles
+
+Is it possible to use credo, format and also Dialyzer to static code check by running.
+
+```bash
+mix credo; mix format; mix dialyzer
+```
