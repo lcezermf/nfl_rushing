@@ -15,7 +15,8 @@
     <%= search_input f, :name_filter %>
     <%= submit "Apply Filter" %>
     <%= link "Clear filters", to: Routes.page_path(@conn, :index), class: "button" %>
-    <%= link "Download data", to: Routes.page_path(@conn, :export_data, @conn.params), class: "button" %>
+    <%= link "Download filtered data", to: Routes.page_path(@conn, :export_data, @conn.params), class: "button" %>
+    <%= link "Download ALL data", to: Routes.page_path(@conn, :export_data, %{"all_data" => true}), class: "button" %>
   <% end %>
 
   <table class="centered">

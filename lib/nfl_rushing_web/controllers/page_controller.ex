@@ -18,7 +18,7 @@ defmodule NflRushingWeb.PageController do
 
   @spec export_data(Plug.Conn.t(), map) :: Plug.Conn.t()
   def export_data(conn, params) do
-    players = Stats.export_data(params)
+    players = Stats.list(params)
 
     send_download(
       conn,
