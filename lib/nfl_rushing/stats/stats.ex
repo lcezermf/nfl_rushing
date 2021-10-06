@@ -10,7 +10,7 @@ defmodule NflRushing.Stats do
   alias NflRushing.Stats.Player
 
   @doc """
-  Retuns a list of players.
+  Retuns a list of players
 
   If no params is set return all results.
 
@@ -19,10 +19,11 @@ defmodule NflRushing.Stats do
   * name_filter: a string that represents the name used to filter the data
   * order_field: the field used to apply the order
   * order_direction: if the order is by :asc or :desc
+  * all_data: if set to true return all data in the db, if not return the filterd/sorted ones
   """
   @spec list(map()) ::
           %Scrivener.Page{
-            :entries => [any()],
+            :entries => [Player],
             :page_number => pos_integer(),
             :page_size => integer(),
             :total_entries => integer(),
