@@ -12,4 +12,8 @@
 
 {:ok, result} = NflRushing.Stats.Parser.parse_players("priv/rushing.json")
 
-NflRushing.Repo.insert_all(NflRushing.Stats.Player, result)
+# For the inital file with 326 records will not be used, but will be applied with I need to load a larger file.
+batch_size = 1000
+
+Enum.chunk_every(result, batch_size)
+|> Enum.each(fn batch -> NflRushing.Repo.insert_all(NflRushing.Stats.Player, batch) end)
