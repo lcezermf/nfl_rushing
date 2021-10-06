@@ -20,12 +20,28 @@ defmodule NflRushing.Stats do
   * order_field: the field used to apply the order
   * order_direction: if the order is by :asc or :desc
   """
-  @spec list(map()) :: [Player] | Ecto.Query
+  @spec list(map()) :: %Scrivener.Page{
+          :entries => [any()],
+          :page_number => pos_integer(),
+          :page_size => integer(),
+          :total_entries => integer(),
+          :total_pages => pos_integer()
+        }
   def list(params \\ %{}) do
+    base_query(params)
+    |> Repo.paginate(params)
+  end
+
+  @spec list(map()) :: [Player]
+  def export_data(params \\ %{}) do
+    base_query(params)
+    |> Repo.all()
+  end
+
+  defp base_query(params) do
     Player
     |> filter_by_name(params)
     |> apply_order(params)
-    |> Repo.all()
   end
 
   @spec filter_by_name(Ecto.Queryable.t(), map()) :: Ecto.Queryable.t()

@@ -6,14 +6,18 @@ defmodule NflRushingWeb.PageController do
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, params) do
-    players = Stats.list(params)
+    paginator = Stats.list(params)
 
-    render(conn, "index.html", players: players)
+    render(conn, "index.html",
+      players: paginator.entries,
+      page_number: paginator.page_number,
+      page_size: paginator.page_size
+    )
   end
 
   @spec export_data(Plug.Conn.t(), map) :: Plug.Conn.t()
   def export_data(conn, params) do
-    players = Stats.list(params)
+    players = Stats.export_data(params)
 
     send_download(
       conn,
