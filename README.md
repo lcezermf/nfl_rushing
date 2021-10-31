@@ -78,5 +78,5 @@ mix test
 Is it possible to use credo, format and also Dialyzer to static code check by running.
 
 ```bash
-mix credo; mix format; mix dialyzer
+mix credo; mix format; mix dialyzer;
 ```
