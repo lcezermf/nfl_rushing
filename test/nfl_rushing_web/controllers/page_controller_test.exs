@@ -104,4 +104,10 @@ defmodule NflRushingWeb.PageControllerTest do
 
     assert response(conn, 200)
   end
+
+  test "GET /teams return 200", %{conn: conn} do
+    conn = get(conn, Routes.page_path(conn, :teams))
+
+    assert response(conn, 200) =~ "Teams"
+  end
 end

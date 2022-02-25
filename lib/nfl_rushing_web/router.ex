@@ -8,13 +8,13 @@ defmodule NflRushingWeb.Router do
     plug :put_root_layout, {NflRushingWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug NflRushingWeb.Plugs.ValidateOrderParams
   end
 
   scope "/", NflRushingWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/teams", PageController, :teams
     get "/export_data", PageController, :export_data
   end
 

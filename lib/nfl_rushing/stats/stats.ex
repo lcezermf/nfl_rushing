@@ -9,6 +9,15 @@ defmodule NflRushing.Stats do
   alias NflRushing.Repo
   alias NflRushing.Stats.Player
 
+  def list_teams_by_yards() do
+    Player
+    |> select([p], {p.team, sum(p.rushing_yards_total)})
+    |> group_by([p], p.team)
+    |> order_by([p], [desc: sum(p.rushing_yards_total)])
+    |> Repo.all()
+    |> Enum.map(fn {team, yards} -> %{team: team, sum_rushing_yards_total: yards} end)
+  end
+
   @doc """
   Retuns a list of players
 

@@ -160,4 +160,23 @@ defmodule NflRushing.StatsTest do
       assert Enum.count(all_records) == 30
     end
   end
+
+  describe "list_teams_by_yards/0" do
+    test "must return total YDS grouped by team" do
+      player_factory(%{name: "Testing A", team: "A", rushing_yards_total: 10.0})
+      player_factory(%{name: "Testing B", team: "A", rushing_yards_total: 5.0})
+      player_factory(%{name: "Testing C", team: "B", rushing_yards_total: 25.0})
+
+      result = Stats.list_teams_by_yards()
+
+      assert result == [
+        %{team: "B", sum_rushing_yards_total: 25},
+        %{team: "A", sum_rushing_yards_total: 15}
+      ]
+    end
+
+    test "return empty" do
+      assert Stats.list_teams_by_yards() == []
+    end
+  end
 end

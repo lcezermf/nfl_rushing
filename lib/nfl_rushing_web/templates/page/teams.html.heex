@@ -1,0 +1,22 @@
+<section class="phx-hero">
+  <h1>Teams</h1>
+</section>
+
+<h2>Listing records</h2>
+
+<table class="centered">
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>YDS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for record <- @records do %>
+      <tr>
+        <td><%= record.team %></td>
+        <td><%= record.sum_rushing_yards_total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
