@@ -7,6 +7,10 @@
     <p class="alert alert-info">Player not found, <%= link "go back.", to: Routes.page_path(@conn, :index) %></p>
   </section>
 <% else %>
+  <h1>
+    <%= link "Download pdf", to: Routes.page_path(@conn, :export_data_pdf) %>
+  </h1>
+
   <h2>Listing players</h2>
 
   <%= form_for @conn, Routes.page_path(@conn, :index), [method: :get, class: "pull-right"], fn f -> %>

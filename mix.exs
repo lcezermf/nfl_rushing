@@ -20,7 +20,7 @@ defmodule NflRushing.MixProject do
   def application do
     [
       mod: {NflRushing.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :pdf_generator]
     ]
   end
 
@@ -51,7 +51,8 @@ defmodule NflRushing.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:scrivener_ecto, "~> 2.0"}
+      {:scrivener_ecto, "~> 2.0"},
+      {:pdf_generator, ">=0.6.0" },
     ]
   end
 
