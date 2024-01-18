@@ -1,5 +1,5 @@
 name: Elixir Tests
-
+run-name: ${{ github.actor }} us running unit tests
 on: [push]
 
 jobs:
