@@ -1,5 +1,5 @@
 name: Elixir Tests
-run-name: ${{ github.actor }} us running unit tests
+run-name: ${{ github.actor }} is running unit tests
 on: [push]
 
 jobs:
@@ -14,6 +14,7 @@ jobs:
       uses: actions/setup-elixir@v1
       with:
         elixir-version: '1.14'
+        otp-version: '24.2'
 
     - name: Install Dependencies
       run: mix deps.get
