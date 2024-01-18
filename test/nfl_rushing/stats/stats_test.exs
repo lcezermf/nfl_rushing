@@ -93,7 +93,7 @@ defmodule NflRushing.StatsTest do
 
       assert player_two.id == Enum.at(records, 0).id
       assert player_three.id == Enum.at(records, 1).id
-      refute player_one.id == Enum.at(records, 2).id
+      assert player_one.id == Enum.at(records, 2).id
     end
 
     test "order data by rushing_touchdowns_total desc" do
