@@ -1,0 +1,15 @@
+<h1 style="background-color: red;">Title</h1>
+<table>
+  <tr>
+    <td>ID</td>
+    <td><%= entry.id %></td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td><%= entry.name %></td>
+  </tr>
+  <tr>
+    <td>Position</td>
+    <td><%= entry.position %></td>
+  </tr>
+</table>
