@@ -132,5 +132,5 @@ jobs:
       - name: Deploy to Gigalixir
         run: |
           echo "machine api.gigalixir.com login ${{ secrets.GIGALIXIR_LOGIN }} password ${{ secrets.GIGALIXIR_PASSWORD }}" > ~/.netrc
-          git remote add gigalixir https://gigalixir.com/your-app-name.git
+          git remote add gigalixir https://git.gigalixir.com/nflrushing.git/
           git push -f gigalixir HEAD:refs/heads/main
