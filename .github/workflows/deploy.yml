@@ -98,8 +98,7 @@ jobs:
     name: Deployment to production
     runs-on: ubuntu-latest
     needs: test
-    environment: production
-
+    
     strategy:
       # Specify the OTP and Elixir versions to use when building
       # and running the workflow steps.
@@ -126,11 +125,10 @@ jobs:
       - name: Compiles without warnings
         run: mix compile
 
-      - name: Build release
-        run: mix release
-
-      - name: Deploy to Gigalixir
-        run: |
-          echo "machine api.gigalixir.com login ${{ secrets.GIGALIXIR_LOGIN }} password ${{ secrets.GIGALIXIR_PASSWORD }}" > ~/.netrc
-          git remote add gigalixir https://git.gigalixir.com/nflrushing.git/
-          git push -f gigalixir HEAD:refs/heads/main
+      - name: Deployment to Gigalixir
+        uses: actions/checkout@v3
+      
+      - run: sudo pip install gigalixir --ignore-installed six
+      - run: gigalixir login -e "${{ secrets.GIGALIXIR_LOGIN }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}"
+      - run: gigalixir git:remote ${{ secrets.GIGALIXIR_APP_NAME }}
+      - run: git push -f gigalixir HEAD:refs/heads/master
