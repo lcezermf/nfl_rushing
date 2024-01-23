@@ -7,7 +7,7 @@
     <p class="alert alert-info">Player not found, <%= link "go back.", to: Routes.page_path(@conn, :index) %></p>
   </section>
 <% else %>
-  <h2>Listing players</h2>
+  <h2>Listing players - Test</h2>
 
   <%= form_for @conn, Routes.page_path(@conn, :index), [method: :get, class: "pull-right"], fn f -> %>
     <%= hidden_input f, :order_field, value: @conn.params["order_field"] || "" %>
