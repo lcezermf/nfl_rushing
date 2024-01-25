@@ -80,3 +80,6 @@ Is it possible to use credo, format and also Dialyzer to static code check by ru
 ```bash
 mix credo; mix format; mix dialyzer;
 ```
+
+
+https://www.mitchellhanberg.com/ci-cd-with-phoenix-github-actions-and-gigalixir/
